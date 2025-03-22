@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Get a Quote - Summerfield Sites</title>
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Quicksand', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      color: #222;
+    }
+    header {
+      background-color: #0a2342;
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      width: 100%;
+    }
+    nav {
+      background-color: #001f3f;
+      text-align: center;
+      padding: 0.5rem;
+      width: 100%;
+    }
+    nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    main {
+      max-width: 800px;
+      margin: auto;
+      padding: 1rem;
+    }
+    .form-section {
+      background-color: #e3f2fd;
+      margin-top: 20px;
+      padding: 2rem;
+      border-radius: 8px;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    input[type="number"], select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 0.5rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    button {
+      margin-top: 1.5rem;
+      background-color: #00796b;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #004d40;
+    }
+    .estimate-box {
+      background-color: #ffffff;
+      padding: 1rem;
+      margin-top: 2rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Get a Quote</h1>
+  </header>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="quote.html">Quote</a>
+    <a href="contact.html">Contact</a>
+    <a href="about.html">About Us</a>
+  </nav>
+  <main>
+    <h2>Quick Estimate</h2>
+    <a href="https://drive.google.com/uc?export=download&id=1gI8rHabA2RJD1OMTK0TyzJQt9bNZePKK">Learn more</a>
+  about our pricing.
+    <form class="form-section" id="quoteForm">
+      <label for="pages">How many pages would you like your website to be?</label>
+      <input type="number" id="pages" name="pages" min="1" max="10" required />
+
+      <label for="functionality">Do you need special functionality like custom code, forms, or chatbots?</label>
+      <select id="functionality" name="functionality" required>
+        <option value="">-- Please choose --</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+
+      <label for="preference">Do you have a preference for how the site is built?</label>
+      <select id="preference" name="preference" required>
+        <option value="">-- Please choose --</option>
+        <option value="none">No preference</option>
+        <option value="programmed">Programmed (more control)</option>
+        <option value="editor">Visual editor (easier to edit later)</option>
+      </select>
+
+      <button type="submit">Get Estimate</button>
+    </form>
+
+    <div class="estimate-box" id="estimateBox" style="display:none;"></div>
+  </main>
+  <script>
+    document.getElementById('quoteForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const pages = parseInt(document.getElementById('pages').value, 10) || 1;
+      const functionality = document.getElementById('functionality').value;
+      const preference = document.getElementById('preference').value;
+
+      let price = 20;
+      price += pages * 2;
+      if (functionality === 'yes') price += 10;
+      if (preference !== 'none' && preference !== '') price += 3;
+      if (price > 50) price = 50;
+
+      const estimateBox = document.getElementById('estimateBox');
+      estimateBox.style.display = 'block';
+      estimateBox.innerHTML = `
+        <h3>Estimated Price: $${price}</h3>
+        <p>This is a ballpark estimate only and is subject to change when your project is formally ordered and reviewed.</p>
+      `;
+    });
+  </script>
+</body>
+</html>
